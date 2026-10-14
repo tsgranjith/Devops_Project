@@ -32,10 +32,9 @@ jobs:
           push: true
           tags: nadhranjith/my-first-web-app:latest
 
-          
-      - name: Deploy to EC2
-        uses: appleboy/ssh-action@v1.2.0
-        with:
+       - name: Deploy to EC2
+         uses: appleboy/ssh-action@v1.2.0
+         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
@@ -43,3 +42,7 @@ jobs:
          sudo docker pull nadhranjith/my-first-web-app:latest
          sudo docker rm -f my-web-app || true
          sudo docker run -d --restart unless-stopped --name my-web-app -p 5000:5000 nadhranjith/my-first-web-app:latest
+
+
+          
+      
